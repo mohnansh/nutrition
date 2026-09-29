@@ -1,0 +1,2773 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NUTRITION FIRE | Premium Sports Nutrition</title>
+
+    <!-- Tailwind CSS CDN with Class Dark Mode -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              neutral: {
+                950: "#08090B",
+                900: "#0F1115",
+                850: "#111318",
+                800: "#181A20",
+                700: "#27272A",
+              },
+              accent: {
+                blue: "#3B82F6",
+                violet: "#8B5CF6",
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Google Fonts: Space Grotesk (Headings) + Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom Stylesheet (NO cursor.css — using normal system cursor) -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <!-- Scroll & Entrance Animations -->
+    <style>
+      /* Scroll reveal animations */
+      .reveal {
+        opacity: 0;
+        transform: translateY(32px);
+        transition:
+          opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .reveal-delay-4 {
+        transition-delay: 0.4s;
+      }
+
+      .reveal-scale {
+        opacity: 0;
+        transform: scale(0.92);
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease;
+      }
+      .reveal-scale.visible {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* Hero entrance animations */
+      @keyframes heroSlideUp {
+        from {
+          opacity: 0;
+          transform: translateY(44px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .hero-animate {
+        animation: heroSlideUp 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+      .hero-animate-d1 {
+        animation-delay: 0.12s;
+        opacity: 0;
+      }
+      .hero-animate-d2 {
+        animation-delay: 0.28s;
+        opacity: 0;
+      }
+      .hero-animate-d3 {
+        animation-delay: 0.42s;
+        opacity: 0;
+      }
+      .hero-animate-d4 {
+        animation-delay: 0.58s;
+        opacity: 0;
+      }
+
+      /* Floating animation */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-14px);
+        }
+      }
+      .animate-float {
+        animation: float 4.5s ease-in-out infinite;
+      }
+
+      /* Pulse glow */
+      @keyframes pulseGlow {
+        0%,
+        100% {
+          box-shadow: 0 0 20px rgba(59, 130, 246, 0.12);
+        }
+        50% {
+          box-shadow: 0 0 44px rgba(59, 130, 246, 0.28);
+        }
+      }
+      .pulse-glow {
+        animation: pulseGlow 3.5s ease-in-out infinite;
+      }
+
+      /* Card hover lift */
+      .card-lift {
+        transition:
+          transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+          box-shadow 0.35s ease;
+      }
+      .card-lift:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 22px 44px rgba(0, 0, 0, 0.08);
+      }
+      .dark .card-lift:hover {
+        box-shadow: 0 22px 44px rgba(0, 0, 0, 0.35);
+      }
+
+      /* Dev mode banner gradient */
+      #dev-mode-banner {
+        background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      }
+
+      /* Lead capture & modal animations */
+      @keyframes modalSlideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      .modal-animate {
+        animation: modalSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      /* Shimmer effect for Coming Soon */
+      @keyframes shimmer {
+        0% {
+          background-position: -200% center;
+        }
+        100% {
+          background-position: 200% center;
+        }
+      }
+      .shimmer-text {
+        background: linear-gradient(
+          90deg,
+          #3b82f6 0%,
+          #8b5cf6 50%,
+          #3b82f6 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shimmer 3s linear infinite;
+      }
+
+      /* Button Sheen Animation */
+      .btn-primary,
+      .btn-whatsapp {
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-primary::after,
+      .btn-whatsapp::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -60%;
+        width: 40%;
+        height: 200%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.18),
+          transparent
+        );
+        transform: rotate(25deg);
+        transition: none;
+      }
+      .btn-primary:hover::after,
+      .btn-whatsapp:hover::after {
+        left: 130%;
+        transition: left 0.75s ease-in-out;
+      }
+
+      /* Soft Breathing Glow on Featured Items */
+      @keyframes softBreathe {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.02);
+        }
+      }
+      .animate-breathe {
+        animation: softBreathe 3s ease-in-out infinite;
+      }
+
+      /* Interactive Badge Pulse */
+      @keyframes badgePing {
+        75%,
+        100% {
+          transform: scale(2);
+          opacity: 0;
+        }
+      }
+      .badge-ping {
+        animation: badgePing 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+      }
+
+      /* Smooth Tap Feedback on Cards */
+      .product-card:active {
+        transform: scale(0.985);
+        transition: transform 0.1s ease;
+      }
+
+      /* ============================================================
+       ANIME LIGHTNING EFFECT FOR NUTRITION FIRE
+       ============================================================ */
+      @keyframes animeLightningElectric {
+        0%,
+        100% {
+          color: #60a5fa;
+          text-shadow:
+            0 0 4px #3b82f6,
+            0 0 10px #3b82f6,
+            0 0 20px #2563eb,
+            0 0 35px rgba(59, 130, 246, 0.8),
+            0 0 50px rgba(139, 92, 246, 0.6);
+          filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.9));
+        }
+        18% {
+          color: #93c5fd;
+          text-shadow:
+            0 0 6px #60a5fa,
+            0 0 15px #3b82f6,
+            0 0 30px #2563eb,
+            0 0 55px rgba(96, 165, 250, 0.9);
+        }
+        20% {
+          color: #ffffff;
+          text-shadow:
+            0 0 12px #ffffff,
+            0 0 25px #60a5fa,
+            0 0 45px #3b82f6,
+            0 0 70px #2563eb,
+            0 0 90px #8b5cf6;
+          filter: drop-shadow(0 0 14px rgba(255, 255, 255, 1));
+        }
+        22% {
+          color: #60a5fa;
+          text-shadow:
+            0 0 4px #3b82f6,
+            0 0 10px #3b82f6,
+            0 0 20px #2563eb;
+        }
+        62% {
+          color: #a7f3d0;
+          text-shadow:
+            0 0 5px #34d399,
+            0 0 14px #3b82f6,
+            0 0 28px #2563eb;
+        }
+        64% {
+          color: #ffffff;
+          text-shadow:
+            0 0 14px #ffffff,
+            0 0 30px #3b82f6,
+            0 0 60px #8b5cf6,
+            0 0 85px #3b82f6;
+          filter: drop-shadow(0 0 16px rgba(59, 130, 246, 1));
+        }
+        66% {
+          color: #60a5fa;
+          text-shadow:
+            0 0 4px #3b82f6,
+            0 0 10px #3b82f6,
+            0 0 20px #2563eb;
+        }
+      }
+
+      .anime-lightning-text {
+        position: relative;
+        display: inline-block;
+        font-weight: 800;
+        animation: animeLightningElectric 2.4s infinite alternate ease-in-out;
+        letter-spacing: 0.04em;
+      }
+
+      .anime-lightning-text::before {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        background: linear-gradient(
+          90deg,
+          #60a5fa 0%,
+          #ffffff 50%,
+          #8b5cf6 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shimmer 1.8s linear infinite;
+        opacity: 0.85;
+      }
+
+      @keyframes logoIconGlow {
+        0%,
+        100% {
+          box-shadow:
+            0 0 12px rgba(59, 130, 246, 0.4),
+            inset 0 0 8px rgba(59, 130, 246, 0.3);
+        }
+        50% {
+          box-shadow:
+            0 0 24px rgba(59, 130, 246, 0.85),
+            inset 0 0 14px rgba(139, 92, 246, 0.6);
+        }
+      }
+
+      .anime-logo-icon {
+        animation: logoIconGlow 2s ease-in-out infinite;
+        border: 1px solid rgba(59, 130, 246, 0.4);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-[#F8F8F8] text-[#0F1115] dark:bg-[#08090B] dark:text-[#FFFFFF] antialiased selection:bg-blue-600 selection:text-white min-h-screen relative transition-colors duration-200"
+  >
+    <!-- Developer Mode Banner (hidden by default, shown when owner authenticates) -->
+    <div
+      id="dev-mode-banner"
+      class="hidden fixed top-0 left-0 right-0 z-[60] text-white text-xs py-2 px-4 text-center font-semibold flex items-center justify-center gap-3 shadow-lg"
+    >
+      <span>👑 Developer Mode Active — Editing Tools Unlocked</span>
+      <button
+        id="exit-dev-mode-btn"
+        class="px-3 py-1 bg-white/20 hover:bg-white/30 rounded-lg text-[11px] font-bold transition"
+      >
+        Exit Dev Mode
+      </button>
+    </div>
+
+    <!-- Subtle Atmospheric Background Texture Canvas -->
+    <canvas id="lightning-canvas"></canvas>
+
+    <div class="site-content relative z-10 flex flex-col min-h-screen">
+      <!-- Top Announcement Bar -->
+      <div
+        class="bg-[#0F1115] dark:bg-[#08090B] text-neutral-300 text-xs py-2.5 px-4 text-center tracking-wide flex items-center justify-center gap-3 border-b border-neutral-800/80"
+      >
+        <span class="inline-flex items-center gap-1.5 font-medium text-white">
+          <span
+            class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"
+          ></span>
+          FREE EXPRESS SHIPPING OVER ₹1,499
+        </span>
+        <span class="text-neutral-500">•</span>
+        <span class="text-neutral-400"
+          >USE CODE
+          <strong class="text-white font-semibold tracking-wider"
+            >FIRE10</strong
+          >
+          FOR 10% OFF</span
+        >
+      </div>
+
+      <!-- Main Navigation Bar -->
+      <header class="sticky top-0 z-40 header-glass">
+        <div
+          class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-6"
+        >
+          <!-- Brand Logo (id used for secret dev auth: 5 clicks to open dev login) -->
+          <a
+            href="#"
+            id="brand-logo-trigger"
+            class="flex items-center gap-3 group"
+          >
+            <div
+              class="w-9 h-9 rounded-lg bg-[#0F1115] dark:bg-white flex items-center justify-center transition-transform group-hover:scale-105 shadow-sm anime-logo-icon"
+            >
+              <svg
+                class="w-5 h-5 text-white dark:text-[#0F1115]"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
+            </div>
+            <div class="flex items-baseline gap-1.5">
+              <span
+                class="font-heading text-lg font-bold tracking-tight text-neutral-900 dark:text-white"
+                >NUTRITION</span
+              >
+              <span
+                class="font-heading text-lg font-bold tracking-tight anime-lightning-text"
+                data-text="FIRE"
+                >FIRE</span
+              >
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-500 ml-0.5"></span>
+            </div>
+          </a>
+
+          <!-- Desktop Navigation (No Global Brands) -->
+          <nav
+            class="hidden lg:flex items-center gap-8 text-sm font-medium text-neutral-600 dark:text-neutral-400"
+          >
+            <a
+              href="#shop-section"
+              class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-150"
+              >Shop All</a
+            >
+            <a
+              href="#shop-section"
+              onclick="
+                document
+                  .querySelector('[data-section=\'proteins-own\']')
+                  .click()
+              "
+              class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-150"
+              >Whey Protein</a
+            >
+            <a
+              href="#shop-section"
+              onclick="
+                document.querySelector('[data-section=\'creatine\']').click()
+              "
+              class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-150"
+              >Creatine</a
+            >
+            <a
+              href="#shop-section"
+              onclick="
+                document.querySelector('[data-section=\'pre-workout\']').click()
+              "
+              class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-150"
+              >Pre-Workout</a
+            >
+            <a
+              href="#shop-section"
+              onclick="
+                document.querySelector('[data-section=\'mass-gainer\']').click()
+              "
+              class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-150"
+              >Mass Gainer</a
+            >
+          </nav>
+
+          <!-- Search Bar -->
+          <div class="hidden md:flex items-center relative max-w-xs w-full">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search supplements..."
+              class="w-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl px-4 py-2 pl-9 text-xs text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:border-neutral-400 dark:focus:border-neutral-700 transition"
+            />
+            <svg
+              class="w-3.5 h-3.5 absolute left-3 text-neutral-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </div>
+
+          <!-- Action Controls -->
+          <div class="flex items-center gap-2.5 sm:gap-3">
+            <!-- Theme Switcher -->
+            <button
+              id="theme-toggle"
+              class="w-9 h-9 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 hover:border-neutral-400 dark:hover:border-neutral-700 flex items-center justify-center text-sm transition shadow-sm"
+              title="Toggle Theme"
+            >
+              🌙
+            </button>
+
+            <!-- Owner Studio Button (HIDDEN by default — only shown in Developer Mode) -->
+            <button
+              id="open-admin-btn"
+              class="hidden px-3.5 py-2 rounded-xl bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200 font-semibold text-xs flex items-center gap-1.5 transition"
+              title="Owner Studio"
+            >
+              <span>⚙️</span>
+              <span class="hidden sm:inline">Studio</span>
+            </button>
+
+            <!-- Wishlist -->
+            <button
+              class="wishlist-header-btn relative w-9 h-9 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-700 flex items-center justify-center text-sm transition shadow-sm"
+              title="Wishlist"
+              onclick="
+                document
+                  .getElementById('shop-section')
+                  .scrollIntoView({ behavior: 'smooth' })
+              "
+            >
+              <span>🤍</span>
+              <span
+                class="wishlist-count-badge hidden absolute -top-1.5 -right-1.5 bg-blue-600 text-white text-[10px] font-semibold w-4 h-4 rounded-full flex items-center justify-center shadow"
+                >0</span
+              >
+            </button>
+
+            <!-- Cart -->
+            <button
+              class="cart-toggle-btn relative px-3 sm:px-3.5 py-2 rounded-xl bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 hover:opacity-90 flex items-center gap-1.5 sm:gap-2 transition shadow-sm font-semibold text-xs"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                />
+              </svg>
+              <span class="hidden sm:inline">Cart</span>
+              <span
+                class="cart-count-badge bg-blue-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full flex items-center justify-center"
+                >0</span
+              >
+            </button>
+
+            <!-- Mobile Hamburger Menu Button -->
+            <button
+              id="mobile-menu-btn"
+              class="lg:hidden w-9 h-9 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 flex items-center justify-center text-sm shadow-sm transition"
+              title="Menu"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer / Dropdown -->
+        <div
+          id="mobile-menu-drawer"
+          class="hidden lg:hidden border-t border-neutral-200/80 dark:border-neutral-800/80 bg-white/98 dark:bg-[#0F1115]/98 backdrop-blur-lg px-5 py-4 space-y-3 shadow-xl transition-all"
+        >
+          <!-- Mobile Search Input -->
+          <div class="flex items-center relative w-full mb-3">
+            <input
+              type="text"
+              id="search-input-mobile"
+              placeholder="Search supplements..."
+              class="w-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl px-4 py-2.5 pl-9 text-xs text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:border-neutral-400"
+            />
+            <svg
+              class="w-4 h-4 absolute left-3 text-neutral-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </div>
+          <div class="flex flex-col space-y-2 text-sm font-medium">
+            <a
+              href="#shop-section"
+              class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-900 dark:text-white transition"
+              >Shop All Products</a
+            >
+            <a
+              href="#shop-section"
+              onclick="
+                document
+                  .querySelector('[data-section=\'proteins-own\']')
+                  .click();
+                document
+                  .getElementById('mobile-menu-drawer')
+                  .classList.add('hidden');
+              "
+              class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300 transition flex items-center justify-between"
+            >
+              <span>Whey Protein</span>
+              <span
+                class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800/60"
+                >Coming Soon</span
+              >
+            </a>
+            <a
+              href="#shop-section"
+              onclick="
+                document.querySelector('[data-section=\'creatine\']').click();
+                document
+                  .getElementById('mobile-menu-drawer')
+                  .classList.add('hidden');
+              "
+              class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300 transition"
+              >Creatine</a
+            >
+            <a
+              href="#shop-section"
+              onclick="
+                document
+                  .querySelector('[data-section=\'pre-workout\']')
+                  .click();
+                document
+                  .getElementById('mobile-menu-drawer')
+                  .classList.add('hidden');
+              "
+              class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300 transition"
+              >Pre-Workout</a
+            >
+            <a
+              href="#shop-section"
+              onclick="
+                document
+                  .querySelector('[data-section=\'mass-gainer\']')
+                  .click();
+                document
+                  .getElementById('mobile-menu-drawer')
+                  .classList.add('hidden');
+              "
+              class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300 transition"
+              >Mass Gainer</a
+            >
+          </div>
+        </div>
+      </header>
+
+      <!-- ========== HERO SECTION ========== -->
+      <section
+        class="relative pt-10 pb-16 sm:pt-16 sm:pb-20 md:pt-24 md:pb-28 overflow-hidden border-b border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-[#08090B]"
+      >
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div
+            class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center"
+          >
+            <!-- Hero Typography & CTAs -->
+            <div class="lg:col-span-7 flex flex-col items-start text-left">
+              <div
+                class="hero-animate inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-[10px] sm:text-xs font-semibold text-neutral-600 dark:text-neutral-400 mb-4 sm:mb-6"
+              >
+                <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                <span
+                  class="tracking-wider uppercase text-[10px] sm:text-[11px]"
+                  >PREMIUM CERTIFIED SUPPLEMENTS</span
+                >
+              </div>
+
+              <h1
+                class="hero-animate hero-animate-d1 font-heading text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.08] sm:leading-[1.05] mb-4 sm:mb-6 text-neutral-900 dark:text-white"
+              >
+                Train harder.<br />
+                <span class="text-neutral-400 dark:text-neutral-500"
+                  >Recover smarter.</span
+                >
+              </h1>
+
+              <p
+                class="hero-animate hero-animate-d2 text-neutral-600 dark:text-neutral-400 text-sm sm:text-base lg:text-lg max-w-lg mb-6 sm:mb-9 leading-relaxed"
+              >
+                Clinical dosages, pharmaceutical-grade purity, and 100% label
+                transparency. Engineered for serious athletes with zero
+                compromises.
+              </p>
+
+              <div
+                class="hero-animate hero-animate-d3 flex flex-wrap gap-2.5 sm:gap-3.5 items-center w-full sm:w-auto"
+              >
+                <a
+                  href="#shop-section"
+                  class="flex-1 sm:flex-initial text-center justify-center px-6 sm:px-7 py-3 sm:py-3.5 btn-primary text-[11px] sm:text-xs uppercase tracking-wider font-semibold rounded-xl flex items-center gap-2 shadow-sm"
+                >
+                  <span>Shop Supplements</span>
+                  <span>→</span>
+                </a>
+                <a
+                  href="#categories-section"
+                  class="flex-1 sm:flex-initial text-center justify-center px-5 sm:px-6 py-3 sm:py-3.5 btn-secondary text-[11px] sm:text-xs uppercase tracking-wider font-semibold rounded-xl"
+                >
+                  Categories
+                </a>
+              </div>
+
+              <!-- Stats Metrics -->
+              <div
+                class="hero-animate hero-animate-d4 grid grid-cols-3 gap-3 sm:gap-8 mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-neutral-200 dark:border-neutral-800/80 w-full max-w-lg"
+              >
+                <div>
+                  <div
+                    class="font-heading text-xl sm:text-3xl font-bold text-neutral-900 dark:text-white tracking-tight"
+                  >
+                    27g+
+                  </div>
+                  <div
+                    class="text-[9px] sm:text-[11px] text-neutral-500 dark:text-neutral-400 uppercase tracking-wider mt-0.5 sm:mt-1 font-medium"
+                  >
+                    Protein / Scoop
+                  </div>
+                </div>
+                <div>
+                  <div
+                    class="font-heading text-xl sm:text-3xl font-bold text-neutral-900 dark:text-white tracking-tight"
+                  >
+                    100%
+                  </div>
+                  <div
+                    class="text-[9px] sm:text-[11px] text-neutral-500 dark:text-neutral-400 uppercase tracking-wider mt-0.5 sm:mt-1 font-medium"
+                  >
+                    Lab Verified
+                  </div>
+                </div>
+                <div>
+                  <div
+                    class="font-heading text-xl sm:text-3xl font-bold text-neutral-900 dark:text-white tracking-tight"
+                  >
+                    0g
+                  </div>
+                  <div
+                    class="text-[9px] sm:text-[11px] text-neutral-500 dark:text-neutral-400 uppercase tracking-wider mt-0.5 sm:mt-1 font-medium"
+                  >
+                    Added Sugar
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hero Brand Showcase (No product image — Brand-focused panel) -->
+            <div
+              class="lg:col-span-5 relative flex items-center justify-center"
+            >
+              <div
+                class="relative w-full max-w-md p-8 bg-white dark:bg-[#111318] rounded-3xl border border-neutral-200/90 dark:border-neutral-800 shadow-xl pulse-glow animate-float"
+              >
+                <div class="text-center">
+                  <div
+                    class="w-20 h-20 rounded-2xl bg-[#0F1115] dark:bg-white flex items-center justify-center mx-auto mb-6 shadow-lg"
+                  >
+                    <svg
+                      class="w-10 h-10 text-white dark:text-[#0F1115]"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                    </svg>
+                  </div>
+                  <span
+                    class="inline-block px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 text-[11px] font-bold uppercase tracking-wider border border-blue-200 dark:border-blue-800/50 mb-4"
+                  >
+                    ✦ Now Available
+                  </span>
+                  <h3
+                    class="font-heading text-xl font-bold text-neutral-900 dark:text-white mb-2"
+                  >
+                    Nutrition Fire 
+                  </h3>
+                  <p class="text-neutral-500 text-xs leading-relaxed mb-5">
+                    Premium Creatine, Pre-Workout & Mass Gainer — now live. Whey
+                    Protein launching soon.
+                  </p>
+                  <div class="grid grid-cols-2 gap-3">
+                    <div
+                      class="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800"
+                    >
+                      <div
+                        class="text-lg font-heading font-bold text-neutral-900 dark:text-white"
+                      >
+                        3
+                      </div>
+                      <div
+                        class="text-[10px] text-neutral-500 uppercase tracking-wider font-medium"
+                      >
+                        Products Live
+                      </div>
+                    </div>
+                    <div
+                      class="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800"
+                    >
+                      <div class="text-lg font-heading font-bold shimmer-text">
+                        1
+                      </div>
+                      <div
+                        class="text-[10px] text-neutral-500 uppercase tracking-wider font-medium"
+                      >
+                        Coming Soon
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== TRUST BAR ========== -->
+      <section
+        class="py-5 bg-neutral-100/60 dark:bg-neutral-900/40 border-b border-neutral-200/80 dark:border-neutral-800/80"
+      >
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center reveal">
+            <div
+              class="flex items-center justify-center gap-3 p-3 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-sm card-lift"
+            >
+              <span class="text-base">🛡️</span>
+              <div class="text-left">
+                <div class="text-xs font-bold text-neutral-900 dark:text-white">
+                  100% Authentic
+                </div>
+                <div class="text-[10px] text-neutral-500">
+                  Third-party lab tested
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex items-center justify-center gap-3 p-3 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-sm card-lift"
+            >
+              <span class="text-base">🧪</span>
+              <div class="text-left">
+                <div class="text-xs font-bold text-neutral-900 dark:text-white">
+                  Rapid Absorption
+                </div>
+                <div class="text-[10px] text-neutral-500">
+                  Enzyme bio-availability
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex items-center justify-center gap-3 p-3 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-sm card-lift"
+            >
+              <span class="text-base">🚀</span>
+              <div class="text-left">
+                <div class="text-xs font-bold text-neutral-900 dark:text-white">
+                  Express Delivery
+                </div>
+                <div class="text-[10px] text-neutral-500">
+                  Ships within 24 hours
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex items-center justify-center gap-3 p-3 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-sm card-lift"
+            >
+              <span class="text-base">💬</span>
+              <div class="text-left">
+                <div class="text-xs font-bold text-neutral-900 dark:text-white">
+                  WhatsApp Checkout
+                </div>
+                <div class="text-[10px] text-neutral-500">
+                  Direct order dispatch
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== CATEGORY SHOWCASE (4 categories, no product images) ========== -->
+      <section
+        id="categories-section"
+        class="py-16 border-b border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-[#08090B]"
+      >
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div
+            class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4 reveal"
+          >
+            <div>
+              <div
+                class="text-xs font-bold uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-1"
+              >
+                DIVISIONS
+              </div>
+              <h2
+                class="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 dark:text-white"
+              >
+                SHOP BY CATEGORY
+              </h2>
+            </div>
+            <p class="text-neutral-500 text-xs sm:text-sm max-w-md">
+              Engineered formulas calibrated for lean muscle recovery, raw
+              strength, and peak athletic performance.
+            </p>
+          </div>
+
+          <!-- 4 Editorial Category Tiles (no product images, icon placeholders) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <!-- Category 1: Whey Protein (Coming Soon) -->
+            <div
+              class="category-tile group p-5 flex flex-col justify-between cursor-pointer card-lift reveal reveal-delay-1"
+              onclick="
+                document
+                  .querySelector('[data-section=\'proteins-own\']')
+                  .click();
+                document
+                  .getElementById('shop-section')
+                  .scrollIntoView({ behavior: 'smooth' });
+              "
+            >
+              <div
+                class="aspect-square rounded-xl bg-neutral-100 dark:bg-neutral-900 mb-4 flex flex-col items-center justify-center overflow-hidden border border-neutral-200 dark:border-neutral-800 relative"
+              >
+                <img
+                  src="c:\Users\Mohnansh Kapil\Pictures\new\WhatsApp Image 2026-09-27 at 22.22.41 (1).jpeg"
+                  alt="Whey Protein"
+                  class="w-full h-full object-contain"
+                />
+
+                <span
+                  class="absolute top-3 left-3 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 shadow-sm"
+                >
+                  COMING SOON
+                </span>
+              </div>
+
+              <div>
+                <h3
+                  class="font-heading font-bold text-sm text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition"
+                >
+                  Whey Protein
+                </h3>
+
+                <p
+                  class="text-[11px] text-neutral-500 dark:text-neutral-400 mt-1 line-clamp-2"
+                >
+                  Pure isolates and concentrated whey.
+                  <span class="shimmer-text font-semibold"
+                    >Launching Soon!</span
+                  >
+                </p>
+
+                <div
+                  class="flex items-center gap-1 mt-3 text-xs font-semibold text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400"
+                >
+                  <span>Preview</span>
+                  <span>→</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Category 2: Creatine -->
+            <div
+              class="category-tile group p-5 flex flex-col justify-between cursor-pointer card-lift reveal reveal-delay-2"
+              onclick="
+                document.querySelector('[data-section=\'creatine\']').click();
+                document
+                  .getElementById('shop-section')
+                  .scrollIntoView({ behavior: 'smooth' });
+              "
+            >
+              <div
+                class="aspect-square rounded-xl bg-neutral-100 dark:bg-neutral-900 mb-4 flex flex-col items-center justify-center overflow-hidden border border-neutral-200 dark:border-neutral-800 relative"
+              >
+                <img
+                  src="assets/images/categories/WhatsApp Image 2026-09-27 at 22.22.40.jpeg"
+                  alt="Creatine"
+                  class="w-full h-full object-contain"
+                />
+              </div>
+              <div>
+                <h3
+                  class="font-heading font-bold text-sm text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition"
+                >
+                  Creatine
+                </h3>
+                <p
+                  class="text-[11px] text-neutral-500 dark:text-neutral-400 mt-1 line-clamp-2"
+                >
+                  200 Mesh micronized monohydrate for explosive cellular power
+                  and ATP.
+                </p>
+                <div
+                  class="flex items-center gap-1 mt-3 text-xs font-semibold text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400"
+                >
+                  <span>Explore</span>
+                  <span>→</span>
+                </div>
+              </div>
+            </div>
+ 
+            <!-- Category 3: Pre-Workout -->
+            <div
+              class="category-tile group p-5 flex flex-col justify-between cursor-pointer card-lift reveal reveal-delay-3"
+              onclick="
+                document
+                  .querySelector('[data-section=\'pre-workout\']')
+                  .click();
+                document
+                  .getElementById('shop-section')
+                  .scrollIntoView({ behavior: 'smooth' });
+              "
+            >
+              <div
+                class="aspect-square rounded-xl bg-neutral-100 dark:bg-neutral-900 mb-4 flex flex-col items-center justify-center overflow-hidden border border-neutral-200 dark:border-neutral-800 relative"
+              >
+                <img
+                  src="C:\Users\Mohnansh Kapil\Documents\nutrition fire\assets\images\categories\WhatsApp Image 2026-09-27 at 22.22.40 (1).jpeg"
+                  alt="Whey Protein"
+                  class="w-full h-full object-contain"
+                />
+              </div>
+              <div>
+                <h3
+                  class="font-heading font-bold text-sm text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition"
+                >
+                  Pre-Workout
+                </h3>
+                <p
+                  class="text-[11px] text-neutral-500 dark:text-neutral-400 mt-1 line-clamp-2"
+                >
+                  High-stimulant focus, beta-alanine endurance, and L-citrulline
+                  vascular pumps.
+                </p>
+                <div
+                  class="flex items-center gap-1 mt-3 text-xs font-semibold text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400"
+                >
+                  <span>Explore</span>
+                  <span>→</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Category 4: Mass Gainer -->
+            <div
+              class="category-tile group p-5 flex flex-col justify-between cursor-pointer card-lift reveal reveal-delay-4"
+              onclick="
+                document
+                  .querySelector('[data-section=\'mass-gainer\']')
+                  .click();
+                document
+                  .getElementById('shop-section')
+                  .scrollIntoView({ behavior: 'smooth' });
+              "
+            >
+              <div
+                class="aspect-square rounded-xl bg-neutral-100 dark:bg-neutral-900 mb-4 flex flex-col items-center justify-center overflow-hidden border border-neutral-200 dark:border-neutral-800 relative"
+              >
+                <img
+                  src="assets/images/categories/WhatsApp Image 2026-09-27 at 22.22.41.jpeg"
+                  alt="Whey Protein"
+                  class="w-full h-full object-contain"
+                />
+              </div>
+              <div>
+                <h3
+                  class="font-heading font-bold text-sm text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition"
+                >
+                  Mass Gainer
+                </h3>
+                <p
+                  class="text-[11px] text-neutral-500 dark:text-neutral-400 mt-1 line-clamp-2"
+                >
+                  Clean-carb complex with high calorie density for serious lean
+                  bulking.
+                </p>
+                <div
+                  class="flex items-center gap-1 mt-3 text-xs font-semibold text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400"
+                >
+                  <span>Explore</span>
+                  <span>→</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== MAIN SHOP & PRODUCT CATALOG ========== -->
+      <section id="shop-section" class="py-16 md:py-20 flex-grow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <!-- Section Header -->
+          <div
+            class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 reveal"
+          >
+            <div>
+              <div
+                class="text-xs font-bold uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-1"
+              >
+                CATALOG
+              </div>
+              <h2
+                class="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 dark:text-white"
+              >
+                ALL SUPPLEMENTS
+              </h2>
+              <p class="text-neutral-500 text-xs sm:text-sm mt-1 max-w-xl">
+                Browse our lineup below. Products launching soon are marked with
+                a special badge.
+              </p>
+            </div>
+
+            <!-- Sorting -->
+            <div class="flex items-center gap-2.5 self-start md:self-end">
+              <label
+                for="sort-select"
+                class="text-xs text-neutral-500 font-semibold whitespace-nowrap"
+                >Sort by:</label
+              >
+              <select
+                id="sort-select"
+                class="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl px-3 py-2 text-xs text-neutral-800 dark:text-white focus:outline-none focus:border-neutral-400 dark:focus:border-neutral-700 shadow-sm"
+              >
+                <option value="featured">Featured & Best Sellers</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Top Rated</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- 4 Category Filter Tabs (No Global Brands) -->
+          <div
+            class="flex items-center gap-2 sm:gap-2.5 overflow-x-auto pb-4 mb-8 no-scrollbar reveal"
+          >
+            <button
+              class="category-tab-btn active px-4 py-2 rounded-xl text-xs font-semibold border bg-neutral-900 dark:bg-white text-white dark:text-neutral-950 border-neutral-900 dark:border-white transition flex items-center gap-2 whitespace-nowrap shadow-sm"
+              data-section="all"
+            >
+              <span>All Products</span>
+              <span
+                id="count-all"
+                class="px-1.5 py-0.5 rounded-full bg-white/20 dark:bg-black/15 text-[10px]"
+                >0</span
+              >
+            </button>
+
+            <button
+              class="category-tab-btn px-4 py-2 rounded-xl text-xs font-semibold border bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-700 transition flex items-center gap-2 whitespace-nowrap shadow-sm"
+              data-section="proteins-own"
+            >
+              <span>Whey Protein</span>
+              <span
+                id="count-proteins-own"
+                class="px-1.5 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-[10px]"
+                >0</span
+              >
+            </button>
+
+            <button
+              class="category-tab-btn px-4 py-2 rounded-xl text-xs font-semibold border bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-700 transition flex items-center gap-2 whitespace-nowrap shadow-sm"
+              data-section="creatine"
+            >
+              <span>Creatine</span>
+              <span
+                id="count-creatine"
+                class="px-1.5 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-[10px]"
+                >0</span
+              >
+            </button>
+
+            <button
+              class="category-tab-btn px-4 py-2 rounded-xl text-xs font-semibold border bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-700 transition flex items-center gap-2 whitespace-nowrap shadow-sm"
+              data-section="pre-workout"
+            >
+              <span>Pre-Workout</span>
+              <span
+                id="count-pre-workout"
+                class="px-1.5 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-[10px]"
+                >0</span
+              >
+            </button>
+
+            <button
+              class="category-tab-btn px-4 py-2 rounded-xl text-xs font-semibold border bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-700 transition flex items-center gap-2 whitespace-nowrap shadow-sm"
+              data-section="mass-gainer"
+            >
+              <span>Mass Gainer</span>
+              <span
+                id="count-mass-gainer"
+                class="px-1.5 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-[10px]"
+                >0</span
+              >
+            </button>
+          </div>
+
+          <!-- Dynamic Products Grid (rendered by app.js) -->
+          <div
+            id="products-grid"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-7"
+          ></div>
+        </div>
+      </section>
+
+      <!-- ========== CLINICAL STANDARDS & VALUE PROPS ========== -->
+      <section
+        class="py-16 bg-white dark:bg-[#08090B] border-t border-neutral-200/80 dark:border-neutral-800/80"
+      >
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+            <div
+              class="text-xs font-bold uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-1"
+            >
+              SCIENTIFIC MATRIX
+            </div>
+            <h2
+              class="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 dark:text-white"
+            >
+              MANUFACTURED FOR MAXIMUM BIOAVAILABILITY
+            </h2>
+            <p class="text-neutral-500 text-xs sm:text-sm mt-1">
+              Science-backed dosages, raw ingredient purity, and 100% label
+              honesty.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div
+              class="p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-sm card-lift reveal reveal-delay-1"
+            >
+              <div
+                class="w-10 h-10 rounded-xl bg-neutral-200/60 dark:bg-neutral-800 flex items-center justify-center text-xl mb-4"
+              >
+                🧪
+              </div>
+              <h3
+                class="font-heading font-bold text-base text-neutral-900 dark:text-white mb-2"
+              >
+                100% Label Transparency
+              </h3>
+              <p
+                class="text-neutral-500 dark:text-neutral-400 text-xs leading-relaxed"
+              >
+                Zero proprietary blends or undisclosed filler. Every single
+                active ingredient is listed to the exact milligram so you know
+                precisely what fuels your body.
+              </p>
+            </div>
+
+            <div
+              class="p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-sm card-lift reveal reveal-delay-2"
+            >
+              <div
+                class="w-10 h-10 rounded-xl bg-neutral-200/60 dark:bg-neutral-800 flex items-center justify-center text-xl mb-4"
+              >
+                🧪
+              </div>
+              <h3
+                class="font-heading font-bold text-base text-neutral-900 dark:text-white mb-2"
+              >
+                Micro-Filtered Bioavailability
+              </h3>
+              <p
+                class="text-neutral-500 dark:text-neutral-400 text-xs leading-relaxed"
+              >
+                200 mesh grade creatine and cross-flow micro-filtered whey
+                isolates ensure instant solubility without clumping, delivering
+                rapid cellular uptake.
+              </p>
+            </div>
+
+            <div
+              class="p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-sm card-lift reveal reveal-delay-3"
+            >
+              <div
+                class="w-10 h-10 rounded-xl bg-neutral-200/60 dark:bg-neutral-800 flex items-center justify-center text-xl mb-4"
+              >
+                💬
+              </div>
+              <h3
+                class="font-heading font-bold text-base text-neutral-900 dark:text-white mb-2"
+              >
+                WhatsApp Direct Order System
+              </h3>
+              <p
+                class="text-neutral-500 dark:text-neutral-400 text-xs leading-relaxed"
+              >
+                One-click checkout dispatches your structured order, chosen
+                flavors, and delivery details directly to our WhatsApp support
+                line for prompt processing.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== FOOTER ========== -->
+      <footer
+        class="bg-white dark:bg-[#08090B] border-t border-neutral-200/80 dark:border-neutral-800/80 py-12 text-neutral-500 text-xs"
+      >
+        <div
+          class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8"
+        >
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <div
+                class="w-6 h-6 rounded bg-[#0F1115] dark:bg-white flex items-center justify-center"
+              >
+                <svg
+                  class="w-3.5 h-3.5 text-white dark:text-[#0F1115]"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                </svg>
+              </div>
+              <span
+                class="font-heading text-sm font-bold text-neutral-900 dark:text-white"
+                >NUTRITION
+                <span class="anime-lightning-text" data-text="FIRE"
+                  >FIRE</span
+                ></span
+              >
+            </div>
+            <p class="text-neutral-500 text-xs leading-relaxed">
+              High-performance sports nutrition engineered for athletes,
+              lifters, and fitness enthusiasts worldwide.
+            </p>
+            <div class="mt-3 text-[11px] text-neutral-400 font-medium">
+  FSSAI Compliant • GMP Certified • 100% Authentic
+</div>
+
+<div class="mt-4 pt-4 border-t border-neutral-200/60 dark:border-neutral-800/60">
+  <p class="text-[11px] text-neutral-400">
+    Developed by
+    <span class="font-semibold text-neutral-700 dark:text-neutral-300">
+      Mohnansh Kapil
+    </span>
+  </p>
+
+  <p class="text-[11px] text-neutral-400 mt-1">
+    Owner Email:
+    <a
+      href="mailto:ankisharma8397998199@gmail.com"
+      class="text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:underline transition-colors"
+    >
+      ankisharma8397998199@gmail.com
+    </a>
+  </p>
+</div>
+          </div>
+
+          <div>
+            <h4
+              class="text-neutral-900 dark:text-white font-bold mb-3 uppercase tracking-wider text-xs"
+            >
+              Divisions
+            </h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#shop-section"
+                  onclick="
+                    document
+                      .querySelector('[data-section=\'proteins-own\']')
+                      .click()
+                  "
+                  class="hover:text-neutral-900 dark:hover:text-white transition"
+                  >Whey Protein</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#shop-section"
+                  onclick="
+                    document
+                      .querySelector('[data-section=\'creatine\']')
+                      .click()
+                  "
+                  class="hover:text-neutral-900 dark:hover:text-white transition"
+                  >Creatine</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#shop-section"
+                  onclick="
+                    document
+                      .querySelector('[data-section=\'pre-workout\']')
+                      .click()
+                  "
+                  class="hover:text-neutral-900 dark:hover:text-white transition"
+                  >Pre-Workout</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#shop-section"
+                  onclick="
+                    document
+                      .querySelector('[data-section=\'mass-gainer\']')
+                      .click()
+                  "
+                  class="hover:text-neutral-900 dark:hover:text-white transition"
+                  >Mass Gainer</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Footer Studio Section (HIDDEN by default, shown in Developer Mode) -->
+          <div id="footer-studio-btn" class="hidden">
+            <h4
+              class="text-neutral-900 dark:text-white font-bold mb-3 uppercase tracking-wider text-xs"
+            >
+              Owner Studio
+            </h4>
+            <p class="text-neutral-500 mb-3">
+              Update product prices, photos, or your WhatsApp number:
+            </p>
+            <button
+              onclick="document.getElementById('open-admin-btn').click()"
+              class="px-3.5 py-2 btn-secondary text-xs font-semibold rounded-xl"
+            >
+              ⚙️ Open Owner Studio
+            </button>
+          </div>
+
+          <div>
+            <h4
+              class="text-neutral-900 dark:text-white font-bold mb-3 uppercase tracking-wider text-xs"
+            >
+              VIP Updates
+            </h4>
+            <p class="text-neutral-500 mb-3">
+              Receive early access drops and private discounts:
+            </p>
+            <div class="flex gap-2">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                class="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-400 dark:focus:border-neutral-700 flex-grow shadow-sm"
+              />
+              <button
+                class="px-3 py-2 btn-primary text-xs font-semibold rounded-xl"
+                onclick="
+                  window.App.showToast('Subscribed to VIP updates', 'success')
+                "
+              >
+                Join
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 pt-6 border-t border-neutral-200/80 dark:border-neutral-800/80 flex flex-col sm:flex-row items-center justify-between text-neutral-400 gap-4"
+        >
+          <div>
+            &copy; 2026 NUTRITION FIRE. All rights reserved. Precision Sports
+            Nutrition.
+          </div>
+          <div class="flex items-center gap-4 text-xs">
+            <span>Privacy Policy</span>
+            <span>•</span>
+            <span>Terms of Service</span>
+            <span>•</span>
+            <span>Lab Certificates</span>
+            <!-- Secret Dev Login link (invisible, accessible via Ctrl+Shift+D or 5x logo click) -->
+            <a href="#" id="open-dev-login-btn" class="hidden">Dev</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ============================================================
+       MODAL 1: SLIDE-OUT SHOPPING CART DRAWER
+       ============================================================ -->
+    <div
+      id="cart-overlay"
+      class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 transition-opacity"
+    ></div>
+    <div
+      id="cart-drawer"
+      class="fixed top-0 right-0 h-full w-full max-w-md bg-white dark:bg-[#111318] border-l border-neutral-200 dark:border-neutral-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col"
+    >
+      <div
+        class="p-5 border-b border-neutral-200 dark:border-neutral-800 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-2">
+          <h3
+            class="font-heading text-base font-bold text-neutral-900 dark:text-white"
+          >
+            SHOPPING CART
+          </h3>
+        </div>
+        <button
+          id="close-cart-btn"
+          class="w-8 h-8 rounded-lg bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-neutral-600 dark:text-neutral-300 flex items-center justify-center text-xs transition"
+        >
+          ✕
+        </button>
+      </div>
+
+      <!-- Free shipping progress -->
+      <div
+        class="p-4 bg-neutral-50 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800"
+      >
+        <div
+          id="free-shipping-text"
+          class="text-xs text-neutral-600 dark:text-neutral-300 mb-2"
+        >
+          Add more for
+          <span class="font-semibold text-neutral-900 dark:text-white"
+            >FREE SHIPPING</span
+          >
+        </div>
+        <div
+          class="w-full h-1.5 bg-neutral-200 dark:bg-neutral-800 rounded-full overflow-hidden"
+        >
+          <div
+            id="free-shipping-progress"
+            class="h-full bg-blue-600 dark:bg-blue-500 rounded-full transition-all duration-300"
+            style="width: 0%"
+          ></div>
+        </div>
+      </div>
+
+      <!-- Cart items -->
+      <div
+        id="cart-drawer-items"
+        class="flex-grow overflow-y-auto p-4 space-y-3"
+      ></div>
+
+      <!-- Empty message -->
+      <div
+        id="cart-empty-message"
+        class="hidden flex-grow flex flex-col items-center justify-center p-8 text-center"
+      >
+        <div class="text-3xl mb-3">🛒</div>
+        <h4
+          class="font-heading font-bold text-base text-neutral-900 dark:text-white mb-1"
+        >
+          Your cart is empty
+        </h4>
+        <p class="text-neutral-500 text-xs mb-5">
+          Explore our supplements and add items to your cart.
+        </p>
+        <button
+          onclick="
+            document.getElementById('close-cart-btn').click();
+            document
+              .getElementById('shop-section')
+              .scrollIntoView({ behavior: 'smooth' });
+          "
+          class="px-5 py-2.5 btn-primary text-xs font-semibold rounded-xl"
+        >
+          Explore Supplements
+        </button>
+      </div>
+
+      <!-- Cart Footer -->
+      <div
+        id="cart-drawer-footer"
+        class="p-5 border-t border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/50 space-y-3.5"
+      >
+        <!-- Promo code -->
+        <div class="flex gap-2">
+          <input
+            type="text"
+            id="coupon-input"
+            placeholder="Promo code (e.g. FIRE10)"
+            class="uppercase bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:border-neutral-400 flex-grow shadow-sm"
+          />
+          <button
+            id="apply-coupon-btn"
+            class="px-4 py-2 btn-secondary text-xs font-semibold rounded-xl"
+          >
+            Apply
+          </button>
+        </div>
+
+        <div class="space-y-1.5 text-xs">
+          <div
+            class="flex justify-between text-neutral-500 dark:text-neutral-400"
+          >
+            <span>Subtotal:</span>
+            <span
+              id="cart-subtotal"
+              class="text-neutral-900 dark:text-white font-semibold"
+              >₹0</span
+            >
+          </div>
+          <div
+            class="flex justify-between text-emerald-600 dark:text-emerald-400"
+          >
+            <span>Discount:</span>
+            <span id="cart-discount" class="font-semibold">- ₹0</span>
+          </div>
+          <div
+            class="flex justify-between text-neutral-500 dark:text-neutral-400"
+          >
+            <span>Shipping:</span>
+            <span
+              id="cart-shipping"
+              class="text-neutral-900 dark:text-white font-semibold"
+              >₹0</span
+            >
+          </div>
+          <div
+            class="flex justify-between text-base font-bold text-neutral-900 dark:text-white pt-2 border-t border-neutral-200 dark:border-neutral-800"
+          >
+            <span>Total:</span>
+            <span id="cart-total" class="font-heading text-lg">₹0</span>
+          </div>
+        </div>
+
+        <!-- Two Checkout Options -->
+        <div class="space-y-2 pt-1">
+          <button
+            id="checkout-btn"
+            class="w-full py-3.5 btn-primary font-semibold text-xs uppercase tracking-wider rounded-xl shadow-sm flex items-center justify-center gap-2"
+          >
+            <span>Proceed to Checkout</span>
+          </button>
+
+          <button
+            id="cart-whatsapp-direct-btn"
+            class="w-full py-3 btn-whatsapp font-semibold text-xs uppercase tracking-wider rounded-xl shadow-sm flex items-center justify-center gap-2"
+          >
+            <span>💬 Fast Order via WhatsApp</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       MODAL 2: QUICK VIEW PRODUCT MODAL
+       ============================================================ -->
+    <div
+      id="quickview-modal"
+      class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm overflow-y-auto"
+    >
+      <div
+        class="relative w-full max-w-3xl bg-white dark:bg-[#111318] border border-neutral-200 dark:border-neutral-800 rounded-2xl overflow-hidden shadow-2xl my-8 modal-animate"
+      >
+        <button
+          id="close-quickview-btn"
+          class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-neutral-600 dark:text-neutral-300 flex items-center justify-center text-xs transition"
+        >
+          ✕
+        </button>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 sm:p-8">
+          <div
+            class="md:col-span-5 flex flex-col items-center justify-center bg-neutral-50 dark:bg-neutral-900 rounded-xl p-6 border border-neutral-200 dark:border-neutral-800 relative"
+          >
+            <span
+              id="qv-badge"
+              class="absolute top-3 left-3 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 shadow-sm"
+            >
+              FEATURED
+            </span>
+            <!-- Dynamic image container (populated by app.js) -->
+            <div
+              id="qv-img-container"
+              class="w-full flex items-center justify-center"
+            >
+              <div
+                class="w-full h-48 flex flex-col items-center justify-center text-center p-6 bg-neutral-100/70 dark:bg-neutral-900/60 rounded-xl"
+              >
+                <div
+                  class="w-12 h-12 rounded-xl bg-neutral-200/70 dark:bg-neutral-800 flex items-center justify-center text-neutral-400 mb-2"
+                >
+                  <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                    />
+                  </svg>
+                </div>
+                <span
+                  class="text-[10px] font-bold tracking-wider uppercase text-neutral-400"
+                  >Photo Coming Soon</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="md:col-span-7 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between">
+                <div
+                  id="qv-brand"
+                  class="text-xs font-semibold uppercase tracking-wider text-neutral-400 dark:text-neutral-500"
+                >
+                  Nutrition Fire
+                </div>
+                <button
+                  id="qv-edit-shortcut"
+                  class="text-xs text-neutral-500 hover:text-neutral-900 dark:hover:text-white font-medium flex items-center gap-1"
+                  style="display: none"
+                >
+                  <span>✏️ Edit Price/Photo</span>
+                </button>
+              </div>
+
+              <h3
+                id="qv-title"
+                class="text-xl font-heading font-bold text-neutral-900 dark:text-white mt-1 leading-snug"
+              >
+                Product Title
+              </h3>
+              <div id="qv-rating" class="text-xs text-neutral-500 mt-1">
+                ★ 4.9 (420 reviews)
+              </div>
+
+              <div class="flex items-baseline gap-3 mt-3">
+                <span
+                  id="qv-price"
+                  class="text-2xl font-heading font-bold text-neutral-900 dark:text-white"
+                  >₹0</span
+                >
+                <span
+                  id="qv-orig-price"
+                  class="text-sm text-neutral-400 line-through"
+                  >₹0</span
+                >
+              </div>
+
+              <p
+                id="qv-desc"
+                class="text-xs text-neutral-600 dark:text-neutral-300 mt-3 leading-relaxed"
+              >
+                Product description...
+              </p>
+
+              <div class="mt-4">
+                <label
+                  class="block text-xs text-neutral-600 dark:text-neutral-400 font-bold mb-1.5"
+                  >Select Flavor:</label
+                >
+                <div id="qv-flavors" class="flex flex-wrap gap-2"></div>
+              </div>
+
+              <div class="mt-4">
+                <label
+                  class="block text-xs text-neutral-600 dark:text-neutral-400 font-bold mb-1.5"
+                  >Select Size / Servings:</label
+                >
+                <div id="qv-weights" class="flex flex-wrap gap-2"></div>
+              </div>
+
+              <div class="mt-4">
+                <label
+                  class="block text-xs text-neutral-600 dark:text-neutral-400 font-bold mb-1.5"
+                  >Nutritional Profile (Per Serving):</label
+                >
+                <div id="qv-specs" class="grid grid-cols-3 gap-2"></div>
+              </div>
+            </div>
+
+            <div
+              class="mt-6 pt-4 border-t border-neutral-100 dark:border-neutral-800 flex items-center gap-3"
+            >
+              <div
+                class="flex items-center border border-neutral-300 dark:border-neutral-700 rounded-xl bg-white dark:bg-neutral-900 overflow-hidden shadow-sm"
+              >
+                <button
+                  id="qv-qty-minus"
+                  class="px-3 py-2 text-neutral-500 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition text-sm font-bold"
+                >
+                  -
+                </button>
+                <span
+                  id="qv-qty-count"
+                  class="px-3 text-sm font-bold text-neutral-900 dark:text-white"
+                  >1</span
+                >
+                <button
+                  id="qv-qty-plus"
+                  class="px-3 py-2 text-neutral-500 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition text-sm font-bold"
+                >
+                  +
+                </button>
+              </div>
+
+              <button
+                id="qv-add-btn"
+                class="flex-grow py-3.5 btn-primary font-semibold text-xs uppercase tracking-wider rounded-xl shadow-sm transition"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       MODAL 3: 1-CLICK QUICK EDIT PRICE & PHOTO MODAL
+       ============================================================ -->
+    <div
+      id="quick-edit-modal"
+      class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+    >
+      <div
+        class="relative w-full max-w-md bg-white dark:bg-[#111318] border border-neutral-200 dark:border-neutral-800 rounded-2xl p-6 shadow-2xl modal-animate"
+      >
+        <div
+          class="flex items-center justify-between pb-3 border-b border-neutral-100 dark:border-neutral-800 mb-4"
+        >
+          <h3
+            class="font-heading text-base font-bold text-neutral-900 dark:text-white"
+          >
+            Quick Edit: Price & Photo
+          </h3>
+          <button
+            id="close-quick-edit-btn"
+            class="text-neutral-400 hover:text-neutral-600 dark:hover:text-white text-xs"
+          >
+            ✕
+          </button>
+        </div>
+
+        <form id="quick-edit-form" class="space-y-4">
+          <input type="hidden" id="qe-product-id" />
+
+          <div>
+            <label
+              class="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1"
+              >Product Title</label
+            >
+            <input
+              type="text"
+              id="qe-name"
+              required
+              class="w-full bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-400"
+            />
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label
+                class="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1"
+                >Selling Price (₹)</label
+              >
+              <input
+                type="number"
+                id="qe-price"
+                required
+                class="w-full bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-400 font-bold"
+              />
+            </div>
+            <div>
+              <label
+                class="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1"
+                >Original MRP (₹)</label
+              >
+              <input
+                type="number"
+                id="qe-original-price"
+                class="w-full bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-400"
+              />
+            </div>
+          </div>
+
+          <!-- Photo replacement -->
+          <div
+            class="p-3.5 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800 space-y-3"
+          >
+            <label
+              class="block text-xs font-semibold text-neutral-800 dark:text-neutral-200"
+            >
+              Product Photo
+            </label>
+
+            <div>
+              <label class="block text-[11px] text-neutral-500 mb-1"
+                >Upload from computer</label
+              >
+              <input
+                type="file"
+                id="qe-photo-file"
+                accept="image/*"
+                class="w-full text-xs text-neutral-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-neutral-900 file:text-white dark:file:bg-white dark:file:text-neutral-950 cursor-pointer"
+              />
+            </div>
+
+            <div>
+              <label class="block text-[11px] text-neutral-500 mb-1"
+                >Or paste photo URL / path</label
+              >
+              <input
+                type="text"
+                id="qe-photo-url"
+                placeholder="assets/images/products/... or URL"
+                class="w-full bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-400"
+              />
+            </div>
+
+            <div class="flex items-center gap-3 pt-1">
+              <span class="text-xs text-neutral-500">Preview:</span>
+              <img
+                id="qe-photo-preview"
+                src=""
+                alt="Preview"
+                class="w-12 h-12 object-contain rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-black/40 p-1"
+              />
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full py-3 btn-primary text-xs uppercase tracking-wider font-semibold rounded-xl"
+          >
+            Save Changes
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       MODAL 4: WHATSAPP CHECKOUT MODAL
+       ============================================================ -->
+    <div
+      id="checkout-modal"
+      class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm overflow-y-auto"
+    >
+      <div
+        class="relative w-full max-w-xl bg-white dark:bg-[#111318] border border-neutral-200 dark:border-neutral-800 rounded-2xl overflow-hidden shadow-2xl my-8 modal-animate"
+      >
+        <div
+          class="p-5 border-b border-neutral-100 dark:border-neutral-800 flex items-center justify-between"
+        >
+          <h3
+            class="font-heading text-base font-bold text-neutral-900 dark:text-white"
+          >
+            Checkout & Order Confirmation
+          </h3>
+          <button
+            id="close-checkout-btn"
+            class="text-neutral-400 hover:text-neutral-600 dark:hover:text-white text-xs"
+          >
+            ✕
+          </button>
+        </div>
+
+        <form id="checkout-form" class="p-6 space-y-4">
+          <div
+            class="bg-neutral-50 dark:bg-neutral-900 rounded-xl p-3.5 border border-neutral-200 dark:border-neutral-800"
+          >
+            <div class="text-xs font-semibold text-neutral-500 uppercase mb-2">
+              Order Items Summary
+            </div>
+            <div id="checkout-summary-items" class="space-y-1 mb-2"></div>
+            <div
+              class="flex justify-between items-center pt-2 border-t border-neutral-200 dark:border-neutral-800 font-bold text-sm"
+            >
+              <span>Total Payable:</span>
+              <span id="checkout-total" class="font-heading text-base">₹0</span>
+            </div>
+          </div>
+
+          <div>
+            <h4
+              class="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2"
+            >
+              1. Delivery Address
+            </h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <input
+                type="text"
+                id="co-name"
+                required
+                placeholder="Full Name *"
+                class="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-400"
+              />
+              <input
+                type="tel"
+                id="co-phone"
+                required
+                placeholder="WhatsApp / Phone Number *"
+                class="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-400"
+              />
+              <input
+                type="text"
+                id="co-address"
+                required
+                placeholder="Flat / House No., Street Address *"
+                class="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-400 sm:col-span-2"
+              />
+              <input
+                type="text"
+                id="co-city"
+                required
+                placeholder="City *"
+                class="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-400"
+              />
+              <input
+                type="text"
+                id="co-pincode"
+                required
+                placeholder="PIN Code *"
+                class="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-400"
+              />
+            </div>
+          </div>
+
+          <div>
+            <h4
+              class="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2"
+            >
+              2. Payment Preference
+            </h4>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+              <label
+                class="flex items-center gap-2 p-2.5 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-900 dark:border-white cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  name="payment-method"
+                  value="UPI / QR Code"
+                  checked
+                  class="accent-neutral-900"
+                />
+                <span
+                  class="text-xs font-semibold text-neutral-900 dark:text-white"
+                  >UPI / QR</span
+                >
+              </label>
+              <label
+                class="flex items-center gap-2 p-2.5 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800 cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  name="payment-method"
+                  value="Debit / Credit Card"
+                  class="accent-neutral-900"
+                />
+                <span
+                  class="text-xs font-semibold text-neutral-900 dark:text-white"
+                  >Card</span
+                >
+              </label>
+              <label
+                class="flex items-center gap-2 p-2.5 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800 cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  name="payment-method"
+                  value="Cash on Delivery"
+                  class="accent-neutral-900"
+                />
+                <span
+                  class="text-xs font-semibold text-neutral-900 dark:text-white"
+                  >Cash on Delivery</span
+                >
+              </label>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full py-3.5 btn-whatsapp font-semibold text-xs uppercase tracking-wider rounded-xl shadow-md transition flex items-center justify-center gap-2"
+          >
+            <span>💬 Send Order to WhatsApp & Confirm</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       MODAL 5: ORDER SUCCESS CELEBRATION
+       ============================================================ -->
+    <div
+      id="order-success-modal"
+      class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+    >
+      <div
+        class="relative w-full max-w-md bg-white dark:bg-[#111318] border border-neutral-200 dark:border-neutral-800 rounded-2xl p-8 text-center shadow-2xl modal-animate"
+      >
+        <div
+          class="w-12 h-12 rounded-full bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl mx-auto mb-4"
+        >
+          ✓
+        </div>
+        <h3
+          class="font-heading text-lg font-bold text-neutral-900 dark:text-white mb-1"
+        >
+          Order Dispatched to WhatsApp
+        </h3>
+        <p class="text-neutral-500 text-xs mb-4">
+          Your order summary has been formatted and redirected to our WhatsApp
+          support line.
+        </p>
+        <div
+          class="p-3 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800 text-xs text-neutral-500 mb-6"
+        >
+          Order Reference:
+          <strong
+            id="order-id-display"
+            class="font-mono text-sm text-neutral-900 dark:text-white"
+            >NF-982314</strong
+          >
+        </div>
+        <button
+          onclick="
+            document
+              .getElementById('order-success-modal')
+              .classList.add('hidden')
+          "
+          class="w-full py-3 btn-primary text-xs font-semibold uppercase tracking-wider rounded-xl"
+        >
+          Continue Shopping
+        </button>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       MODAL 6: FULL OWNER PRODUCT STUDIO
+       ============================================================ -->
+    <div
+      id="admin-modal"
+      class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto"
+    >
+      <div
+        class="relative w-full max-w-3xl bg-white dark:bg-[#111318] border border-neutral-200 dark:border-neutral-800 rounded-2xl overflow-hidden shadow-2xl my-8 modal-animate"
+      >
+        <div
+          class="p-5 sm:p-6 border-b border-neutral-100 dark:border-neutral-800 flex items-center justify-between gap-4"
+        >
+          <div>
+            <h3
+              class="font-heading text-base sm:text-lg font-bold text-neutral-900 dark:text-white"
+            >
+              NUTRITION FIRE — OWNER STUDIO
+            </h3>
+            <p class="text-neutral-500 text-xs mt-0.5">
+              Manage products, modify prices, update photos, and configure your
+              WhatsApp number.
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <!-- Prominent Back to Store Button -->
+            <button
+              id="back-to-store-btn"
+              onclick="document.getElementById('close-admin-btn').click()"
+              class="px-3.5 py-1.5 rounded-xl bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-neutral-800 dark:text-neutral-200 font-semibold text-xs flex items-center gap-1.5 transition shadow-sm"
+              title="Go Back to Store"
+            >
+              <span>←</span>
+              <span>Back to Store</span>
+            </button>
+            <button
+              id="close-admin-btn"
+              class="w-8 h-8 rounded-xl bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-neutral-600 dark:text-neutral-300 flex items-center justify-center text-xs transition"
+              title="Close"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+
+        <!-- Studio Tabs -->
+        <div
+          class="flex border-b border-neutral-100 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/50 px-6"
+        >
+          <button
+            id="admin-tab-add"
+            class="py-3 px-4 text-xs font-bold text-neutral-900 dark:text-white border-b-2 border-neutral-900 dark:border-white transition"
+          >
+            Add New Product
+          </button>
+          <button
+            id="admin-tab-list"
+            class="py-3 px-4 text-xs font-bold text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-white transition"
+          >
+            Manage Catalog & Edit
+          </button>
+          <button
+            id="admin-tab-settings"
+            class="py-3 px-4 text-xs font-bold text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-white transition"
+          >
+            WhatsApp Settings
+          </button>
+        </div>
+
+        <!-- Add Product Form -->
+        <div id="admin-content-add" class="p-6 space-y-4">
+          <h4
+            id="admin-form-title"
+            class="font-heading text-sm font-bold text-neutral-900 dark:text-white"
+          >
+            Add New Supplement
+          </h4>
+          <form id="admin-product-form" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div>
+                <label
+                  class="block text-xs text-neutral-700 dark:text-neutral-300 font-semibold mb-1"
+                  >Product Name *</label
+                >
+                <input
+                  type="text"
+                  id="admin-name"
+                  required
+                  placeholder="e.g. NF Pure Isolate"
+                  class="w-full bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-400"
+                />
+              </div>
+
+              <div>
+                <label
+                  class="block text-xs text-neutral-700 dark:text-neutral-300 font-semibold mb-1"
+                  >Category Division *</label
+                >
+                <select
+                  id="admin-section"
+                  required
+                  class="w-full bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-400"
+                >
+                  <option value="proteins-own">Whey Protein (Own Brand)</option>
+                  <option value="creatine">Creatine</option>
+                  <option value="pre-workout">Pre-Workout</option>
+                  <option value="mass-gainer">Mass Gainer</option>
+                </select>
+              </div>
+
+              <div>
+                <label
+                  class="block text-xs text-neutral-700 dark:text-neutral-300 font-semibold mb-1"
+                  >Brand Name</label
+                >
+                <input
+                  type="text"
+                  id="admin-brand"
+                  placeholder="Nutrition Fire"
+                  class="w-full bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-400"
+                />
+              </div>
+
+              <div>
+                <label
+                  class="block text-xs text-neutral-700 dark:text-neutral-300 font-semibold mb-1"
+                  >Badge Tag</label
+                >
+                <input
+                  type="text"
+                  id="admin-badge"
+                  placeholder="e.g. BESTSELLER, 100% PURE"
+                  class="w-full bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-400"
+                />
+              </div>
+
+              <div>
+                <label
+                  class="block text-xs text-neutral-700 dark:text-neutral-300 font-semibold mb-1"
+                  >Selling Price (₹) *</label
+                >
+                <input
+                  type="number"
+                  id="admin-price"
+                  required
+                  placeholder="00"
+                  class="w-full bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-400"
+                />
+              </div>
+
+              <div>
+                <label
+                  class="block text-xs text-neutral-700 dark:text-neutral-300 font-semibold mb-1"
+                  >Original MRP (₹)</label
+                >
+                <input
+                  type="number"
+                  id="admin-original-price"
+                  placeholder="4499"
+                  class="w-full bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-400"
+                />
+              </div>
+
+              <div>
+                <label
+                  class="block text-xs text-neutral-700 dark:text-neutral-300 font-semibold mb-1"
+                  >Servings Count</label
+                >
+                <input
+                  type="number"
+                  id="admin-servings"
+                  placeholder="60"
+                  class="w-full bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-400"
+                />
+              </div>
+
+              <div>
+                <label
+                  class="block text-xs text-neutral-700 dark:text-neutral-300 font-semibold mb-1"
+                  >Flavors (Comma separated)</label
+                >
+                <input
+                  type="text"
+                  id="admin-flavors"
+                  placeholder="Rich Chocolate, Vanilla Bean"
+                  class="w-full bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-400"
+                />
+              </div>
+
+              <div class="sm:col-span-2">
+                <label
+                  class="block text-xs text-neutral-700 dark:text-neutral-300 font-semibold mb-1"
+                  >Weight / Size Options (Comma separated)</label
+                >
+                <input
+                  type="text"
+                  id="admin-weights"
+                  placeholder="1 kg (2.2 lbs), 2.27 kg (5 lbs)"
+                  class="w-full bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-400"
+                />
+              </div>
+            </div>
+
+            <!-- Photo upload -->
+            <div
+              class="p-3.5 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800 space-y-3"
+            >
+              <label
+                class="block text-xs font-semibold text-neutral-800 dark:text-neutral-200"
+              >
+                Product Photo
+              </label>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 items-center">
+                <div>
+                  <label class="block text-[11px] text-neutral-500 mb-1"
+                    >Option 1: Upload from computer</label
+                  >
+                  <input
+                    type="file"
+                    id="admin-photo-file"
+                    accept="image/*"
+                    class="w-full text-xs text-neutral-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-neutral-900 file:text-white dark:file:bg-white dark:file:text-neutral-950 cursor-pointer"
+                  />
+                </div>
+                <div>
+                  <label class="block text-[11px] text-neutral-500 mb-1"
+                    >Option 2: Photo Path or URL</label
+                  >
+                  <input
+                    type="text"
+                    id="admin-photo-url"
+                    placeholder="assets/images/products/... or web URL"
+                    class="w-full bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-400"
+                  />
+                </div>
+              </div>
+              <div class="flex items-center gap-3 pt-1">
+                <span class="text-xs text-neutral-500">Preview:</span>
+                <img
+                  id="admin-photo-preview"
+                  src=""
+                  alt="Preview"
+                  class="hidden w-12 h-12 object-contain rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-black/40 p-1"
+                />
+              </div>
+            </div>
+
+            <!-- Nutrition specs -->
+            <div class="grid grid-cols-3 gap-3">
+              <div>
+                <label
+                  class="block text-[11px] text-neutral-500 font-semibold mb-1"
+                  >Protein / Serving</label
+                >
+                <input
+                  type="text"
+                  id="admin-spec-protein"
+                  placeholder="e.g. 27g"
+                  class="w-full bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white"
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-[11px] text-neutral-500 font-semibold mb-1"
+                  >BCAA / Creatine</label
+                >
+                <input
+                  type="text"
+                  id="admin-spec-bcaa"
+                  placeholder="e.g. 6.5g"
+                  class="w-full bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white"
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-[11px] text-neutral-500 font-semibold mb-1"
+                  >Calories</label
+                >
+                <input
+                  type="text"
+                  id="admin-spec-calories"
+                  placeholder="e.g. 120 kcal"
+                  class="w-full bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label
+                class="block text-xs text-neutral-700 dark:text-neutral-300 font-semibold mb-1"
+                >Product Description</label
+              >
+              <textarea
+                id="admin-desc"
+                rows="3"
+                placeholder="Formula highlights, clinical benefits..."
+                class="w-full bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-400"
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              id="admin-submit-btn"
+              class="w-full py-3.5 btn-primary font-semibold text-xs uppercase tracking-wider rounded-xl shadow-sm"
+            >
+              Add Product to Store
+            </button>
+          </form>
+        </div>
+
+        <!-- Manage List -->
+        <div id="admin-content-list" class="hidden p-6 space-y-4">
+          <div class="flex items-center justify-between mb-2">
+            <h4
+              class="font-heading text-sm font-bold text-neutral-900 dark:text-white"
+            >
+              Current Products in Catalog
+            </h4>
+            <div class="flex items-center gap-2">
+              <button
+                id="admin-export-btn"
+                class="px-3 py-1.5 btn-secondary text-xs font-semibold rounded-lg"
+              >
+                Export JSON
+              </button>
+              <button
+                id="admin-reset-btn"
+                class="px-3 py-1.5 bg-red-50 dark:bg-red-950/40 hover:bg-red-100 dark:hover:bg-red-900 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 text-xs font-semibold rounded-lg transition"
+              >
+                Reset Defaults
+              </button>
+            </div>
+          </div>
+
+          <div
+            id="admin-product-items"
+            class="space-y-2.5 max-h-96 overflow-y-auto pr-1"
+          ></div>
+        </div>
+
+        <!-- WhatsApp Settings Tab -->
+        <div id="admin-content-settings" class="hidden p-6 space-y-4">
+          <h4
+            class="font-heading text-sm font-bold text-neutral-900 dark:text-white"
+          >
+            Configure WhatsApp Order Redirection
+          </h4>
+          <p class="text-neutral-500 text-xs leading-relaxed">
+            When customers proceed to checkout, their complete order receipt
+            (products, flavors, size, quantity, address, and total) is
+            automatically compiled and dispatched to this WhatsApp phone number.
+          </p>
+
+          <div
+            class="p-4 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800 space-y-3"
+          >
+            <label
+              class="block text-xs font-semibold text-neutral-700 dark:text-neutral-300"
+            >
+              Owner WhatsApp Phone Number (with Country Code, no + symbol)
+            </label>
+            <div class="flex gap-2">
+              <input
+                type="text"
+                id="admin-whatsapp-input"
+                placeholder="e.g. 919812345678 (Country code + 10 digits)"
+                class="w-full bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-xl px-3 py-2 text-xs text-neutral-900 dark:text-white font-mono focus:outline-none focus:border-neutral-400 shadow-sm"
+              />
+              <button
+                id="save-whatsapp-btn"
+                class="px-5 py-2 btn-whatsapp font-semibold text-xs rounded-xl whitespace-nowrap shadow-sm"
+              >
+                Save Number
+              </button>
+            </div>
+            <p class="text-[11px] text-neutral-400">
+              Example: If your Indian number is <strong>9812345678</strong>,
+              enter <strong>919812345678</strong>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Studio Bottom Footer Bar: Quick Exit / Return to Store -->
+        <div
+          class="px-6 py-3.5 bg-neutral-100/70 dark:bg-neutral-900/80 border-t border-neutral-200 dark:border-neutral-800 flex items-center justify-between"
+        >
+          <span class="text-[11px] text-neutral-500 font-medium"
+            >Changes take effect immediately on your store</span
+          >
+          <button
+            id="exit-studio-footer-btn"
+            class="px-4 py-2 rounded-xl btn-primary text-xs font-semibold flex items-center gap-1.5 shadow-sm"
+          >
+            <span>←</span>
+            <span>Exit Studio & Return to Store</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       MODAL 7: LEAD CAPTURE POPUP (shown to first-time visitors)
+       ============================================================ -->
+    <div
+      id="lead-capture-modal"
+      class="hidden fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md"
+    >
+      <div
+        class="relative w-full max-w-sm bg-white dark:bg-[#111318] border border-neutral-200 dark:border-neutral-800 rounded-2xl p-7 shadow-2xl modal-animate text-center"
+      >
+        <!-- Brand Mark -->
+        <div
+          class="w-14 h-14 rounded-xl bg-[#0F1115] dark:bg-white flex items-center justify-center mx-auto mb-5 shadow-lg"
+        >
+          <svg
+            class="w-7 h-7 text-white dark:text-[#0F1115]"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+          </svg>
+        </div>
+
+        <h3
+          class="font-heading text-lg font-bold text-neutral-900 dark:text-white mb-1"
+        >
+          Welcome to Nutrition Fire
+        </h3>
+        <p class="text-neutral-500 text-xs mb-6 leading-relaxed">
+          Enter your details to explore our premium supplement lineup. We'll
+          keep you updated on new launches!
+        </p>
+
+        <form id="lead-capture-form" class="space-y-3 text-left">
+          <div>
+            <label
+              class="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1"
+              >Your Name</label
+            >
+            <input
+              type="text"
+              id="lead-name"
+              required
+              placeholder="Enter your full name"
+              class="w-full bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3.5 py-2.5 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-blue-500 dark:focus:border-blue-500 transition"
+            />
+          </div>
+          <div>
+            <label
+              class="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1"
+              >Phone Number (with country code)</label
+            >
+            <input
+              type="tel"
+              id="lead-phone"
+              required
+              placeholder="Enter your phone number"
+              class="w-full bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3.5 py-2.5 text-xs text-neutral-900 dark:text-white font-mono focus:outline-none focus:border-blue-500 dark:focus:border-blue-500 transition"
+            />
+            <!-- Message under number column -->
+            <div
+              class="flex items-center gap-1.5 mt-1.5 px-2.5 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 text-emerald-700 dark:text-emerald-300"
+            >
+              <span class="text-xs">💬</span>
+              <span class="text-[11px] font-semibold"
+                >send a message on whatsapp to avail discount</span
+              >
+            </div>
+          </div>
+          <button
+            type="submit"
+            class="w-full py-3 btn-primary text-xs uppercase tracking-wider font-semibold rounded-xl mt-2 flex items-center justify-center gap-2"
+          >
+            <span>Enter Store & Claim Discount</span>
+            <span>→</span>
+          </button>
+        </form>
+
+        <p class="text-[10px] text-neutral-400 mt-4">
+          Your details are kept private and only used to send you updates.
+        </p>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       MODAL 8: SECRET DEVELOPER AUTH MODAL
+       (Opened via 5x logo click or Ctrl+Shift+D)
+       ============================================================ -->
+    <div
+      id="dev-auth-modal"
+      class="hidden fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md"
+    >
+      <div
+        class="relative w-full max-w-sm bg-white dark:bg-[#111318] border border-neutral-200 dark:border-neutral-800 rounded-2xl p-7 shadow-2xl modal-animate text-center"
+      >
+        <button
+          id="close-dev-auth-btn"
+          class="absolute top-4 right-4 w-7 h-7 rounded-full bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-neutral-500 flex items-center justify-center text-xs transition"
+        >
+          ✕
+        </button>
+
+        <div
+          class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center mx-auto mb-4 shadow-lg"
+        >
+          <span class="text-white text-lg">👑</span>
+        </div>
+
+        <h3
+          class="font-heading text-base font-bold text-neutral-900 dark:text-white mb-1"
+        >
+          Owner Authentication
+        </h3>
+        <p class="text-neutral-500 text-xs mb-5">
+          Enter your credentials to unlock Owner Studio.
+        </p>
+
+        <form id="dev-auth-form" class="space-y-3 text-left">
+          <div>
+            <label
+              class="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1"
+              >Owner Phone Number</label
+            >
+            <input
+              type="tel"
+              id="dev-phone-input"
+              required
+              placeholder="Enter owner phone number"
+              class="w-full bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3.5 py-2.5 text-xs text-neutral-900 dark:text-white font-mono focus:outline-none focus:border-blue-500 dark:focus:border-blue-500 transition"
+            />
+          </div>
+          <div>
+            <label
+              class="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1"
+              >Password</label
+            >
+            <input
+              type="password"
+              id="dev-password-input"
+              required
+              placeholder="Enter owner password"
+              class="w-full bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl px-3.5 py-2.5 text-xs text-neutral-900 dark:text-white font-mono focus:outline-none focus:border-blue-500 dark:focus:border-blue-500 transition"
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full py-3 bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white text-xs uppercase tracking-wider font-semibold rounded-xl transition flex items-center justify-center gap-2"
+          >
+            <span>👑</span>
+            <span>Unlock Owner Studio</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Clean Toast Notification Container -->
+    <div id="toast-container"></div>
+
+    <!-- Application Scripts (NO cursor.js — using normal system cursor) -->
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/lightning-canvas.js"></script>
+    <script src="assets/js/admin.js"></script>
+    <script src="assets/js/app.js"></script>
+
+    <!-- Scroll Reveal Animation Engine -->
+    <script>
+      (function () {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+            rootMargin: "0px 0px -40px 0px",
+          },
+        );
+
+        document.addEventListener("DOMContentLoaded", () => {
+          document.querySelectorAll(".reveal, .reveal-scale").forEach((el) => {
+            observer.observe(el);
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
