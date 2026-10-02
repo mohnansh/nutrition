@@ -23,7 +23,7 @@ const DEFAULT_PRODUCTS = [
     reviewsCount: 0,
     badge: "COMING SOON",
     isComingSoon: true,
-    image: "", // Placeholder - editable by owner in developer mode
+    image: "assets/images/products/whey.jpeg", // Placeholder - editable by owner in developer mode
     servings: 67,
     flavors: ["lets see"],
     weightOptions: ["1kg kg (2.2 lbs)"],
@@ -67,7 +67,7 @@ const DEFAULT_PRODUCTS = [
   // 3. PRE-WORKOUT (1 Product)
   {
     id: "nf-preworkout-ignite",
-    name: "Nutrition Fire Ignite High-Stim Pre-Workout",
+    name: "Nutrition Fire Pre-Workout",
     brand: "Nutrition Fire",
     section: "pre-workout",
     price: 999,
