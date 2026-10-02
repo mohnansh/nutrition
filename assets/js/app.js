@@ -179,13 +179,11 @@
     // Check if visitor is in developer mode
     const devMode = isDeveloperMode();
 
-    // Always show welcome popup unless currently in Developer Mode
-    if (!devMode && leadModal) {
-      setTimeout(() => {
-        leadModal.classList.remove("hidden");
-        document.body.style.overflow = "hidden";
-      }, 400);
-    }
+    // Welcome popup disabled - visitors enter the store directly
+if (leadModal) {
+  leadModal.classList.add("hidden");
+  document.body.style.overflow = "";
+}
 
     // Lead Capture Form Submission
     if (leadForm) {
